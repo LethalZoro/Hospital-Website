@@ -1,2 +1,2 @@
-# Hspital Website
+# Hospital Website
  
