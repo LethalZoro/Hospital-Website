@@ -9,7 +9,7 @@ router.post("/", async (request, response) => {
       !request.body.name ||
       !request.body.address ||
       !request.body.diagnosis ||
-      !request.body.ammount
+      !request.body.amount
     ) {
       return response
         .status(400)
@@ -19,7 +19,7 @@ router.post("/", async (request, response) => {
       name: request.body.name,
       address: request.body.address,
       diagnosis: request.body.diagnosis,
-      ammount: request.body.ammount,
+      amount: request.body.amount,
     };
     const patient = await Patient.create(new_patient);
     return response.status(201).send(patient);
@@ -67,7 +67,7 @@ router.put("/:id", async (request, response) => {
       !request.body.name ||
       !request.body.address ||
       !request.body.diagnosis ||
-      !request.body.ammount
+      !request.body.amount
     ) {
       return response
         .status(400)
