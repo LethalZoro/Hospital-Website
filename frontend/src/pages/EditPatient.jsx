@@ -5,3 +5,5 @@ export const EditPatient = () => {
     <div>EditPatient</div>
   )
 }
+
+export  default EditPatient 

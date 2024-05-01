@@ -5,3 +5,5 @@ export const DeletePatient = () => {
     <div>DeletePatient</div>
   )
 }
+
+export default DeletePatient

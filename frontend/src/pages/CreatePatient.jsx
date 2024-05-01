@@ -5,3 +5,4 @@ export const CreatePatient = () => {
     <div>CreatePatient</div>
   )
 }
+export default CreatePatient

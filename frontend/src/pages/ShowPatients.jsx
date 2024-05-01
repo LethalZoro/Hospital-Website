@@ -5,3 +5,4 @@ export const ShowPatients = () => {
     <div>ShowPatients</div>
   )
 }
+export default ShowPatients
