@@ -1,9 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
-import { PORT, mongoURI } from "./config.js";
+// import { PORT, mongoURI } from "./config.js";
+import { mongoURI } from "./config.js";
+
 import { Patient } from "./models/patientModel.js";
 import patientRoute from "./routes/patientRoute.js";
 import cors from "cors";
+
+const PORT = process.env.PORT || 5555;
 
 const app = express();
 

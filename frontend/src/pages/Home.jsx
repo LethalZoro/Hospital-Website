@@ -9,6 +9,9 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 export const Home = () => {
     const [patients, setPatients] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const [x,setX] = useState(5);
+    setX(10);
     useEffect(() => {
         setLoading(true);
         axios
