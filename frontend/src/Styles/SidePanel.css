@@ -1,0 +1,40 @@
+.SidePanel {
+    width: 200px;
+    /* height: calc(100vh - 10px); Subtract the height of the header */
+    height: 100%;
+    background-color:rgba(93, 159, 175, 0.282);
+    position: fixed;
+    left: 0;
+    /* top: 70px; Set this to the height of your header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    box-shadow: 5px 10px 10px  rgba(0, 0, 0, 0.1);
+
+}
+
+.SidePanel a {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Makes the link color the same as the surrounding text */
+}
+.SidePanel ul {
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+}
+
+.SidePanel li {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color:rgb(91, 157, 173);
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+.SidePanel li:hover {
+    background-color:rgba(91, 157, 173, 0.41);
+}

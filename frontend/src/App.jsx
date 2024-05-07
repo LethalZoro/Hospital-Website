@@ -1,23 +1,24 @@
-import React from 'react'
+import { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
-import Home from './pages/Home'
-import ShowPatients from './pages/ShowPatient'
-import EditPatient from './pages/EditPatient'
-import  CreatePatient  from './pages/CreatePatient'
-import DeletePatient from './pages/DeletePatient'
+import Home from './Pages/Home'
+import AddPatient from './Pages/AddPatient'
+import Expenses from './Pages/Expenses'
+import Search from './Pages/Search'
 
+import './Styles/App.css'
+function App() {
+const [Side_panel, setSide_panel] = useState(false);
 
+const block=<Routes>
+            <Route path='/' element={<Home Side_panel={Side_panel} setSide_panel={setSide_panel}/>}></Route>
+            <Route path='/expenses' element={<Expenses Side_panel={Side_panel} setSide_panel={setSide_panel}/>}></Route>
+            <Route path='/patient/add' element={<AddPatient Side_panel={Side_panel} setSide_panel={setSide_panel}/>}></Route>
+            <Route path='/patient/search' element={<Search Side_panel={Side_panel} setSide_panel={setSide_panel}/>}></Route>
+            </Routes>
 
-export const App = () => {
-  return (
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/patient/create' element={<CreatePatient/>}/>
-      <Route path='/patient/details/:id' element={<ShowPatients/>}/>
-      <Route path='/patient/edit/:id' element={<EditPatient/>}/>
-      <Route path='/patient/delete/:id' element={<DeletePatient/>}/>
-    </Routes>
-  )
+return (
+  block
+)
 }
 
 export default App

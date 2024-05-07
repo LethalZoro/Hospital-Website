@@ -1,0 +1,10 @@
+*{
+  padding: 0;
+  margin: 0;
+  transition: all 0.4s;
+}
+:root{
+  /* background-color: blanchedalmond; */
+  background-color:rgb(232, 244, 242);
+  
+}
