@@ -10,7 +10,9 @@ const Home = ({Side_panel,setSide_panel}) => {
     <>
             <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
             {Side_panel&&(<SidePanel />)}
-            <div className='home' style={{ left: Side_panel ? '260px' : '0' }}>
+            <div className='home' style={{ left: Side_panel ? '260px' : '0' ,
+            width: Side_panel ? 'calc(100% - 260px)' : '100%'
+            }}>
             <h1>Dashboard</h1>
             </div>
             

@@ -1,6 +1,7 @@
 .Header{
 
-    background-color: rgb(232, 244, 242);
+    /* background-color: rgb(232, 244, 242); */
+    background-color:rgba(93, 159, 175, 0.282);
     display: flex;
     flex-direction: row;
     align-items: center;
