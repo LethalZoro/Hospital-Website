@@ -5,6 +5,8 @@ import { mongoURI } from "./config.js";
 
 import { Patient } from "./models/patientModel.js";
 import patientRoute from "./routes/patientRoute.js";
+import expenseRoute from "./routes/expenseRoute.js";
+
 import cors from "cors";
 
 const PORT = process.env.PORT || 5555;
@@ -29,6 +31,9 @@ app.get("/", (request, response) => {
 });
 
 app.use("/patient", patientRoute);
+
+// use expenseRoute here
+app.use("/expense", expenseRoute);
 
 mongoose
   .connect(mongoURI)

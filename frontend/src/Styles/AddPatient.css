@@ -17,7 +17,7 @@
   border: 3px solid;
   animation: rainbow 5s linear infinite;
 
-  border-radius: 10px;
+  border-radius: 20px;
   width: 35%;
   height: 400px;
   align-self: center;
@@ -45,6 +45,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
    
   }
   
@@ -59,10 +60,10 @@
     width: 100%;
     max-width: 300px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 15px;
   }
   
-  .submit-button {
+  /* .submit-button {
     padding: 10px 20px;
     background-color: #5d9faf;
     color: white;
@@ -74,7 +75,29 @@
   
   .submit-button:hover {
     background-color: #5d9fafb1;
+  } */
+  .submit-button {
+    font-family: monospace;
+    background-color: #5d9faf;
+    font-size: 20px;
+    color:black;
+    border: none;
+    border-radius: 8px;
+    width: 100px;
+    height: 45px;
+    transition: .1s;
   }
+  
+  .submit-button:hover {
+
+    background-color: #0d203cf4;
+    box-shadow: 0 0 0 5px #5d9faf99;
+    color: #fff;
+  }
+
+
+
+
 .delete-button-container {
     display: flex;
     justify-content: center;
@@ -97,6 +120,7 @@
 .table-container{
   /* border: 3px solid; */
   /* animation: rainbow 5s linear infinite; */
+  border-radius: 20px;
   padding: 10px;
   box-shadow: 2px -2px 5px  rgba(0, 0, 0, 0.336);
   position: relative;
@@ -150,3 +174,7 @@
     85% {border-color: violet;}
     100% {border-color: red;}
   }
+
+
+
+  

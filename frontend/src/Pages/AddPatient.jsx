@@ -125,7 +125,7 @@ const currentItems = patients.slice(indexOfFirstItem, indexOfLastItem);
             <input id='diagnosis'  type="text" value={diagnosis} onChange={(event) => setDiagnosis(event.target.value)}required autoComplete='true'/> <br />
             <label htmlFor="amount">Amount: </label>
             <input  id='amount' type="number" value={amount} onChange={(event) => setAmount(event.target.value)}required autoComplete='true' min={0}/> <br />
-            <button className="submit-button" type='submit' >Submit</button>
+            <button className="submit-button" type='submit' ><b>Submit</b></button>
           </form>
         </div>
         <br />
