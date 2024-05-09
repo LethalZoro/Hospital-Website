@@ -100,7 +100,7 @@ const currentItems = patients.slice(indexOfFirstItem, indexOfLastItem);
         error: 'An error occurred while deleting the patient.'
       }
     );
-  
+
     deletePatientPromise.then(() => {
       fetchPatients();
     }).catch((error) => {
