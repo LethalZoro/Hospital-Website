@@ -7,7 +7,7 @@ import Search from './Pages/Search'
 
 import './Styles/App.css'
 function App() {
-const [Side_panel, setSide_panel] = useState(false);
+const [Side_panel, setSide_panel] = useState(true);
 
 const block=<Routes>
             <Route path='/' element={<Home Side_panel={Side_panel} setSide_panel={setSide_panel}/>}></Route>

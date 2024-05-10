@@ -16,9 +16,30 @@ const Expenses = ({Side_panel,setSide_panel}) => {
   const[note,setNote] = useState('')
   const [currentPage, setCurrentPage] = useState(1);
 const [itemsPerPage, setItemsPerPage] = useState(5);
+const [searchTerm, setSearchTerm] = useState('');
+
+
+const handleSearchChange = (event) => {
+  setSearchTerm(event.target.value);
+};
+// const prevPage = () => {
+//   setCurrentPage(prevPageNumber => prevPageNumber - 1);
+// };
+const filteredExpenses = expenses.filter(expense =>
+  Object.values(expense).some(value =>
+    value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  )
+);
 const indexOfLastItem = currentPage * itemsPerPage;
 const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = expenses.slice(indexOfFirstItem, indexOfLastItem);
+const currentItems = filteredExpenses.slice(indexOfFirstItem, indexOfLastItem);
+
+const handleItemsChange = (event) => {
+  setItemsPerPage(Number(event.target.value));
+  setCurrentPage(1); // Reset current page to 1 when items per page changes
+};
+
+
 
 const addExpense = (event) => {
   event.preventDefault();
@@ -78,9 +99,9 @@ const addExpense = (event) => {
   return (
     <>
             <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
-            {Side_panel&&(<SidePanel />)}
-            <div className='addexpense' style={{ left: Side_panel ? '260px' : '0',
-            width: Side_panel ? 'calc(100% - 260px)' : '100%' }}>
+            <SidePanel Side_panel={Side_panel} setSide_panel={setSide_panel}/>
+            <div className='addexpense' style={{ left: Side_panel ? '0px' : '290px',
+            width: Side_panel ? '100%' : 'calc(100% - 290px)'}}>
             <h1>Add Expense</h1>
             <div className='input'>
           <form action="" onSubmit={(event) => addExpense(event)}>
@@ -99,7 +120,35 @@ const addExpense = (event) => {
         <div className="container">
           <div className="table-container">
           <br />
-        <h2 >Expense History </h2>
+          <div className="header-container">
+              <div className='show-entries'>
+              <label>Show entries: 
+                <select value={itemsPerPage} onChange={handleItemsChange}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+
+                </select>
+              </label>
+            </div>
+            <h2 >Expense History </h2>
+            {/* <div className='page-button'>
+                <button className="pagination-button" onClick={prevPage} disabled={currentPage === 1}>Previous</button>
+                <button className="pagination-button" onClick={nextPage} disabled={currentPage === Math.ceil(patients.length / itemsPerPage)}>Next</button>
+              </div> */}
+              <div className='page-button'>
+                {/* <label htmlFor="Search">Search:  </label>
+          <input type="text" placeholder="Search..." value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);handleSearchChange}} /> */}
+                  <div className="group">
+          <svg className="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
+          <input placeholder="Search" type="search" className="input-search" value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);handleSearchChange}}/>
+        </div>
+            </div>
+          </div>
+        
             <table className='table'>
               <thead>
                 <tr>
@@ -113,7 +162,7 @@ const addExpense = (event) => {
                 </tr>
               </thead>
               <tbody>
-                {expenses.map((expense, index) => (
+                {currentItems.map((expense, index) => (
                   <tr key={expense._id}>
                     <td >{index + 1}</td>
                     <td>{expense.type}</td>

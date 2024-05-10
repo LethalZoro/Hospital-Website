@@ -132,9 +132,10 @@ const handleItemsChange = (event) => {
   return (
     <>
         <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
-        {Side_panel&&(<SidePanel />)}
-        <div className='addpatient' style={{ left: Side_panel ? '260px' : '0',
-            width: Side_panel ? 'calc(100% - 260px)' : '100%' }}>
+        <SidePanel Side_panel={Side_panel} setSide_panel={setSide_panel}/>
+        <div className='addpatient' style={{ left: Side_panel ? '0px' : '290px',
+            width: Side_panel ? '100%' : 'calc(100% - 290px)'
+          }}>
         <h1>Add Patients</h1>
         <div className='input'>
           <form action="" onSubmit={(event) => addPatient(event)}>
@@ -164,6 +165,9 @@ const handleItemsChange = (event) => {
                   <option value="10">10</option>
                   <option value="15">15</option>
                   <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+
                 </select>
               </label>
             </div>

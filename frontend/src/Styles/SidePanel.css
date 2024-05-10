@@ -1,17 +1,20 @@
 .SidePanel {
     width: 200px;
     /* height: calc(100vh - 10px); Subtract the height of the header */
-    height: 100%;
+    height: 40%;
     background-color:rgba(93, 159, 175, 0.282);
-    position: fixed;
+    position: absolute;
     left: 0;
     /* top: 70px; Set this to the height of your header */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    padding-right: 60px;
     box-shadow: 5px 10px 10px  rgba(0, 0, 0, 0.1);
-
+    border-radius:0 0 10% 0;
+    justify-content: space-evenly;
+    z-index: 2;
 }
 
 .SidePanel a {
@@ -27,14 +30,25 @@
 .SidePanel li {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     background-color:rgb(91, 157, 173);
     text-align: center;
     cursor: pointer;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    font-size: 20px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.395);
+    font-size: 23px;
+    border-radius: 20px;
 }
 
 .SidePanel li:hover {
     background-color:rgba(91, 157, 173, 0.41);
 }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1;
+  }
+  

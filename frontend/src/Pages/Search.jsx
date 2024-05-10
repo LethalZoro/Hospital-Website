@@ -8,8 +8,9 @@ const Search = ({Side_panel,setSide_panel}) => {
   return (
     <>
             <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
-            {Side_panel&&(<SidePanel />)}
-            <div className='search' style={{ left: Side_panel ? '260px' : '0' }}>
+            <SidePanel Side_panel={Side_panel} setSide_panel={setSide_panel}/>
+            <div className='search' style={{ left: Side_panel ? '0px' : '290px',
+            width: Side_panel ? '100%' : 'calc(100% - 290px)'}}>
             <h1>Search Patients</h1>
             </div>
             
