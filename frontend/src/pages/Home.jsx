@@ -10,8 +10,8 @@ const Home = ({Side_panel,setSide_panel}) => {
 
   return (
     <>
-            <Header Side_panel={Side_panel} setSide_panel={setSide_panel} buttonRef={buttonRef}/>
-            <SidePanel Side_panel={Side_panel} setSide_panel={setSide_panel}  buttonRef={buttonRef}/>
+            <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
+            <SidePanel Side_panel={Side_panel} setSide_panel={setSide_panel}  />
             <div className='home' style={{ left: Side_panel ? '0px' : '290px',
             width: Side_panel ? '100%' : 'calc(100% - 290px)'
           }}>

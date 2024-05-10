@@ -17,7 +17,7 @@ const Header = ({Side_panel,setSide_panel,buttonRef,}) => {
         <div className='Header' >
             {/* <AiOutlineMenu className='side-tray-icon' onClick={() => {setSide_panel(!Side_panel)}}/> */}
             <div className="hamburger" ref={buttonRef}>
-                <input className="checkbox" type="checkbox" checked={!Side_panel} onClick={() => {setSide_panel(!Side_panel)}}/>
+                <input className="checkbox" type="checkbox" checked={!Side_panel} onChange={() => {setSide_panel(!Side_panel)}}/>
                 <svg fill="none" viewBox="0 0 50 50" height="50" width="50">
                     <path
                     className="lineTop line"

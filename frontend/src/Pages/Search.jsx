@@ -1,19 +1,153 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import Header from '../Components/Header.jsx'
 import SidePanel from '../Components/SidePanel.jsx'
 import '../Styles/Search.css'
+import {Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
+import { Link } from 'react-router-dom';
+import { MdOutlineAddBox, MdOutlineDelete,MdOutlineRefresh  } from "react-icons/md";
 
 const Search = ({Side_panel,setSide_panel}) => {
+  const buttonRef = useRef(null);
+  const [patients,setPatients] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+const [itemsPerPage, setItemsPerPage] = useState(10);
+const [searchTerm, setSearchTerm] = useState('');
+const handleSearchChange = (event) => {
+  setSearchTerm(event.target.value);
+};
+
+const filteredPatients = patients.filter(patient =>
+  Object.values(patient).some(value =>
+    value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  )
+);
+const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const currentItems = filteredPatients.slice(indexOfFirstItem, indexOfLastItem);
+
+const handleItemsChange = (event) => {
+  setItemsPerPage(Number(event.target.value));
+  setCurrentPage(1); // Reset current page to 1 when items per page changes
+};
+
+const fetchPatients = () => {
+
+  const getPatientPromise = axios.get('https://hospital-website-pxe9.onrender.com/patient');
+  toast.promise(
+    getPatientPromise,
+    {
+      pending: 'Fetching patients...',
+      success: 'Patients fetched successfully!',
+      error: 'Failed to fetch patients',
+    }
+  )
+  .then(response => {
+    setPatients(response.data.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+
+};
+useEffect(() => {
+  fetchPatients();
+}, []);
+
   return (
     <>
             <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
             <SidePanel Side_panel={Side_panel} setSide_panel={setSide_panel}/>
             <div className='search' style={{ left: Side_panel ? '0px' : '290px',
             width: Side_panel ? '100%' : 'calc(100% - 290px)'}}>
-            <h1>Search Patients</h1>
-            </div>
             
+            <br />
+            <br />
+            <div className="container">
+          
+          <div className="table-container">
+
+          
+          <br />
+          <div className="header-container">
+              <div className='show-entries'>
+              <label>Show entries: 
+                <select value={itemsPerPage} onChange={handleItemsChange}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+
+                </select>
+              </label>
+            </div>
+            <h2 >Search Patients </h2>
+              <div className='page-button'>
+                <div className="group">
+          <svg className="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
+          <input placeholder="Search" type="search" className="input-search" value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);handleSearchChange}}/>
+        </div>
+            </div>
+          </div>
+        
+            <table className='table'>
+              <thead>
+                <tr>
+                <th>Index</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Diagnosis</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.map((patient, index) => (
+                  <tr key={patient._id}>
+                    <td >{index + 1}</td>
+                    <td>{patient.name}</td>
+                    <td>{patient.address}</td>
+                    <td>{patient.diagnosis}</td>
+                    <td>{patient.amount}</td>
+                    <td>
+                      {new Date(patient.createdAt).toLocaleDateString('en-GB')}
+                    </td>
+                    <td>
+                      {new Date(patient.createdAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+                    </td >
+                    <td >
+                      <div className="delete-button-container">
+                      <Link onClick={()=>deletePatient(patient._id)}>
+                                            <MdOutlineDelete className='delete-button' />
+                                        </Link></div></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+      </div>
+        </div>
+        </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
+          transition={Slide}
+          />
+
             </>
   )
 }

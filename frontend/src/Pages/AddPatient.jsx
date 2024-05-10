@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import {Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// toast.configure();
 
 const AddPatient = ({Side_panel,setSide_panel}) => {
   const [patients,setPatients] = useState([])
@@ -20,15 +19,11 @@ const AddPatient = ({Side_panel,setSide_panel}) => {
 const [itemsPerPage, setItemsPerPage] = useState(10);
 const [searchTerm, setSearchTerm] = useState('');
 
-// const nextPage = () => {
-//   setCurrentPage(prevPageNumber => prevPageNumber + 1);
-// };
+
 const handleSearchChange = (event) => {
   setSearchTerm(event.target.value);
 };
-// const prevPage = () => {
-//   setCurrentPage(prevPageNumber => prevPageNumber - 1);
-// };
+
 const filteredPatients = patients.filter(patient =>
   Object.values(patient).some(value =>
     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
@@ -43,26 +38,6 @@ const handleItemsChange = (event) => {
   setCurrentPage(1); // Reset current page to 1 when items per page changes
 };
 
-  // const addPatient = (event) => {
-  //   event.preventDefault();
-  //   if (!name || !address || !diagnosis || !amount) {
-  //     toast.error('Please fill all the fields.');
-  //     return;
-  //   }
-  //   const data={name,address,diagnosis,amount}
-  //   axios.post('https://hospital-website-pxe9.onrender.com/patient', data)
-  //   .then(response => {
-  //     toast.success('Patient added successfully!');
-  //     setName('');
-  //     setAddress('');
-  //     setDiagnosis('');
-  //     setAmount('');
-  //     fetchPatients();
-  //   }).catch(error => {
-  //     console.error(error);
-  //     toast.error('An error occurred while adding the patient.');
-  //   });
-  // }
 
   const addPatient = (event) => {
     event.preventDefault();
@@ -172,14 +147,8 @@ const handleItemsChange = (event) => {
               </label>
             </div>
             <h2 >Patients History </h2>
-            {/* <div className='page-button'>
-                <button className="pagination-button" onClick={prevPage} disabled={currentPage === 1}>Previous</button>
-                <button className="pagination-button" onClick={nextPage} disabled={currentPage === Math.ceil(patients.length / itemsPerPage)}>Next</button>
-              </div> */}
               <div className='page-button'>
-                {/* <label htmlFor="Search">Search:  </label>
-          <input type="text" placeholder="Search..." value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);handleSearchChange}} /> */}
-                  <div className="group">
+                 <div className="group">
           <svg className="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
           <input placeholder="Search" type="search" className="input-search" value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);handleSearchChange}}/>
         </div>
