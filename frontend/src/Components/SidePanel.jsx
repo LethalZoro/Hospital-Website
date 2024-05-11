@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import '../Styles/SidePanel.css';
 import { Link } from 'react-router-dom';
 
-const SidePanel = ({Side_panel,setSide_panel, buttonRef}) => {
+const SidePanel = ({Side_panel,setSide_panel}) => {
   const sidePanelRef = useRef(null);
-
+  const buttonRef = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidePanelRef.current && !sidePanelRef.current.contains(event.target) && buttonRef.current && !buttonRef.current.contains(event.target) ) {

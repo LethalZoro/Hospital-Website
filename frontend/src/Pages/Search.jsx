@@ -56,7 +56,24 @@ const fetchPatients = () => {
 useEffect(() => {
   fetchPatients();
 }, []);
+const deletePatient = (id) => {
+  const deletePatientPromise = axios.delete(`https://hospital-website-pxe9.onrender.com/patient/${id}`);
 
+  toast.promise(
+    deletePatientPromise,
+    {
+      pending: 'Deleting patient...',
+      success: 'Patient deleted successfully!',
+      error: 'An error occurred while deleting the patient.'
+    }
+  );
+
+  deletePatientPromise.then(() => {
+    fetchPatients();
+  }).catch((error) => {
+    console.error(error);
+  });
+};
   return (
     <>
             <Header Side_panel={Side_panel} setSide_panel={setSide_panel} />
